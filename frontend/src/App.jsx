@@ -193,6 +193,7 @@ function App() {
     <div className="app-root">
       <div className="app-container">
         <header className="app-header">
+          <img src="public/Logo.png" alt="" style={{height: "200px"}}/>
           <h1 className="system-title">
             ระบบนับจำนวนบัณฑิต ที่เข้ารับพระราชทานปริญญาบัตร
           </h1>
