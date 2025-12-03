@@ -130,7 +130,7 @@ def startprogram(x1=0, y1=0, x2=0, y2=0, mode = None, url = None):
                     track_id = track.track_id
                     if not boolhabdle:
                         count += 1
-                        #print("Person Count: ",count)
+                        print("Person Count: ",count)
                         timestamp = time.strftime("%H:%M:%S", local_time)
                         boolhabdle = True
 
