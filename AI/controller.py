@@ -3,6 +3,9 @@ import requests
 
 file_part = "data.json"
 
+BACKEND_URL = "http://localhost:5000/api/python/update-count"
+
+counter.setBackendPostUrl(BACKEND_URL)
 counter.setCameraCapture("AI/source/testvdo.mp4")
 counter.setTotalvalue(57)
 

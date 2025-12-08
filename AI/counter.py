@@ -170,6 +170,15 @@ def startprogram(x1=0, y1=0, x2=0, y2=0, mode = None, url = None):
             }
             writeFile(data, "data.json")
             lasted_count = count
+
+            if url_post:
+                try:
+                    resp = requests.post(
+                        url_post,
+                        json={"count": count}
+                    )
+                except Exception as e:
+                    print("Error sending to backend: {e}")
         
         if cv2.waitKey(1) & 0xFF == ord('s'):
             switcher = not switcher
@@ -209,6 +218,10 @@ def setTotalvalue(value):
 def setCameraCapture(value):
     global indexcapture
     indexcapture = value
+
+def setBackendPostUrl(url):
+    global url_post
+    url_post = url
 
 
 def runPrepare():
