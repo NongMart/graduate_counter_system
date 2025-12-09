@@ -97,7 +97,7 @@ app.post('/api/control/start', (req, res) => {
     // แล้วคุณรัน server.js จากโฟลเดอร์ backend
     // path ฝั่ง Node ไปหา controller.py จะเป็น "../ai/controller.py"
     const pythonPath = 'python';       // หรือ 'python3' ถ้าใช้ Linux/Mac
-    const scriptPath = '../ai/controller.py'; // ปรับให้ตรงกับที่คุณเก็บไฟล์จริง
+    const scriptPath = '../AI/controller.py'; // ปรับให้ตรงกับที่คุณเก็บไฟล์จริง
 
     pythonProcess = spawn(pythonPath, [scriptPath], {
       stdio: 'inherit',  // ให้ log ของ Python เด้งใน console เดียวกัน (ช่วย debug)

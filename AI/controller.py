@@ -2,12 +2,11 @@ import counter
 import requests
 
 file_part = "data.json"
-
+vdo_parth = "C:/Users/acer/Desktop/graduate_counter_system/AI/source/testvdo.mp4"
 BACKEND_URL = "http://localhost:5000/api/python/update-count"
 
 counter.setBackendPostUrl(BACKEND_URL)
-counter.setCameraCapture("AI/source/testvdo.mp4")
-counter.setTotalvalue(57)
+counter.setCameraCapture(vdo_parth)
 
 #Region Of Interested
 x1, y1 = 503, 0  #ซ้้ายบน รับเข้ามา
