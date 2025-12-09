@@ -118,7 +118,7 @@ def startprogram(x1=0, y1=0, x2=0, y2=0, mode = None, url = None):
         local_time = time.localtime(time.time())
 
 
-        if switcher and len(crop) != 0:
+        if True and len(crop) != 0:
             if frame_count % 3 == 0:
                 coor = detect_by_pipe(crop,frame,pose,x1, y1)
                 tracks = tracker.update_tracks(coor, frame=frame)
