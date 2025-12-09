@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const { spawn } = require('child_process');
 
 const app = express();
 const PORT = 5000; // frontend จะเรียกที่ http://localhost:5000
@@ -20,8 +19,6 @@ let state = {
   pythonCount: 0,             // จำนวนที่ส่งมาจากฝั่ง Python (absolute count)
   manualDelta: 0              // การปรับเพิ่มลดด้วยปุ่ม + / -
 };
-
-let pythonProcess = null;
 
 // ฟังก์ชันคำนวณเวลาที่ผ่านไปทั้งหมด (sec)
 function getElapsedSeconds() {
@@ -80,45 +77,12 @@ app.post('/api/config', (req, res) => {
 
 // start counting
 app.post('/api/control/start', (req, res) => {
-  // ถ้ายังไม่ start timer ให้เริ่มนับเวลา
   if (!state.isRunning) {
     state.isRunning = true;
     state.startTime = Date.now();
   }
-
-  // ถ้า Python ยังไม่รัน ให้สั่งรัน controller.py
-  if (!pythonProcess) {
-    // ---- ปรับ path ให้ตรงกับโปรเจกต์ของคุณ ----
-    // ตัวอย่าง: ถ้าโครงสร้างเป็น:
-    // graduation-counter/
-    //   backend/
-    //   ai/controller.py
-    //
-    // แล้วคุณรัน server.js จากโฟลเดอร์ backend
-    // path ฝั่ง Node ไปหา controller.py จะเป็น "../ai/controller.py"
-    const pythonPath = 'python';       // หรือ 'python3' ถ้าใช้ Linux/Mac
-    const scriptPath = '../ai/controller.py'; // ปรับให้ตรงกับที่คุณเก็บไฟล์จริง
-
-    pythonProcess = spawn(pythonPath, [scriptPath], {
-      stdio: 'inherit',  // ให้ log ของ Python เด้งใน console เดียวกัน (ช่วย debug)
-    });
-
-    console.log('Python AI started');
-
-    pythonProcess.on('exit', (code, signal) => {
-      console.log(`Python AI exited (code=${code}, signal=${signal})`);
-      pythonProcess = null;
-    });
-
-    pythonProcess.on('error', (err) => {
-      console.error('Failed to start Python AI:', err);
-      pythonProcess = null;
-    });
-  }
-
   res.json({ success: true, status: buildStatus() });
 });
-
 
 // stop counting
 app.post('/api/control/stop', (req, res) => {
@@ -128,18 +92,8 @@ app.post('/api/control/stop', (req, res) => {
     state.startTime = null;
     state.isRunning = false;
   }
-
-  // ถ้ามี Python รันอยู่ ให้ kill
-  if (pythonProcess) {
-    console.log('Stopping Python AI...');
-    // ส่ง signal ปิด
-    pythonProcess.kill();   // ค่า default คือ SIGTERM บน Unix, SIGTERM emulation บน Windows
-    pythonProcess = null;
-  }
-
   res.json({ success: true, status: buildStatus() });
 });
-
 
 // clear / reset ทุกอย่าง
 app.post('/api/control/clear', (req, res) => {
@@ -152,16 +106,8 @@ app.post('/api/control/clear', (req, res) => {
     pythonCount: 0,
     manualDelta: 0
   };
-
-  if (pythonProcess) {
-    console.log('Stopping Python AI (clear)...');
-    pythonProcess.kill();
-    pythonProcess = null;
-  }
-
   res.json({ success: true, status: buildStatus() });
 });
-
 
 // ปรับ manual + / -
 app.post('/api/control/adjust', (req, res) => {
