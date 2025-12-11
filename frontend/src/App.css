@@ -299,3 +299,225 @@
     padding: 12px 14px;
   }
 }
+
+/* ---------- Status layout ใหม่ ---------- */
+
+.status-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.status-empty {
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px dashed var(--border-soft);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.status-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* แถวบน: จำนวนที่รับไปแล้ว / Running / จำนวนที่เหลือ */
+
+.counts-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1.6fr);
+  gap: 16px;
+}
+
+.count-block {
+  background-color: #ffffff;
+  border-radius: 18px;
+  padding: 16px 18px;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.count-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.count-number {
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.count-number-left {
+  color: #e53935;
+}
+
+.count-done .count-number {
+  color: #1565c0;
+}
+
+.count-subrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.count-percent {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ปุ่มปรับค่าใต้ "รับไปแล้ว" */
+
+.count-block .adjust-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.count-block .hint {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* กล่องสถานะตรงกลาง */
+
+.status-center {
+  background-color: #ffffff;
+  border-radius: 18px;
+  padding: 16px 18px;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.status-center-label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.status-center-pill-row {
+  display: flex;
+  justify-content: center;
+}
+
+.status-pill {
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.status-pill-running {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #2e7d32;
+}
+
+.status-pill-stopped {
+  background-color: rgba(229, 57, 53, 0.12);
+  color: #c62828;
+}
+
+.status-center-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* แถวเวลา */
+
+.time-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.time-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.time-card-right {
+  text-align: right;
+}
+
+.time-label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.time-value {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* แถวค่าเฉลี่ย */
+
+.average-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.avg-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.avg-label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.avg-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.avg-value .unit {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+
+.avg-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .counts-row {
+    grid-template-columns: 1fr;
+  }
+
+  .status-center {
+    order: -1; /* เอากล่องสถานะขึ้นมาอยู่บนสุดเวลาอยู่บนมือถือ */
+  }
+
+  .time-row {
+    grid-template-columns: 1fr;
+  }
+}

@@ -93,7 +93,7 @@ function App() {
   const renderStatus = () => {
     if (!status) {
       return (
-        <div className="status-card">
+        <div className="status-empty">
           <p>ยังไม่มีข้อมูลสถานะจากระบบ</p>
         </div>
       );
@@ -111,83 +111,101 @@ function App() {
     } = status;
 
     const durationHours = (durationMinutes || 0) / 60;
+    const total = totalGraduates || 0;
+    const done = totalCount ?? 0;
+    const left = remainingCount ?? 0;
+    const percentDone = total > 0 ? (done / total) * 100 : 0;
+    const percentLeft = total > 0 ? (left / total) * 100 : 0;
 
     return (
-      <div className="status-grid">
-        <div className="status-card main-count-card">
-          <div className="status-label">จำนวนที่รับไปแล้ว</div>
-          <div className="status-value main-count">{totalCount ?? 0}</div>
-          <div className="adjust-buttons">
-            <button
-              className="btn small-btn"
-              onClick={() => handleAdjust(-1)}
-              disabled={controlLoading}
-            >
-              - 1
-            </button>
-            <button
-              className="btn small-btn"
-              onClick={() => handleAdjust(1)}
-              disabled={controlLoading}
-            >
-              + 1
-            </button>
+      <div className="status-layout">
+        {/* แถวบน: จำนวนที่รับไปแล้ว / Running / จำนวนที่เหลือ */}
+        <div className="counts-row">
+          <div className="count-block count-done">
+            <div className="count-title">จำนวนที่รับไปแล้ว (คน)</div>
+            <div className="count-number">{done}</div>
+            <div className="count-subrow">
+              <span className="count-percent">
+                {percentDone.toFixed(2)}% ของทั้งหมด {total} คน
+              </span>
+            </div>
+            <div className="adjust-buttons">
+              <button
+                className="btn small-btn"
+                onClick={() => handleAdjust(-1)}
+                disabled={controlLoading}
+              >
+                - 1
+              </button>
+              <button
+                className="btn small-btn"
+                onClick={() => handleAdjust(1)}
+                disabled={controlLoading}
+              >
+                + 1
+              </button>
+            </div>
+            <div className="hint">
+              ปรับค่าด้วยปุ่ม + / - หากระบบ AI นับผิดพลาด
+            </div>
           </div>
-          <div className="hint">
-            * ปุ่ม + / - ใช้สำหรับปรับค่าเผื่อระบบ AI นับผิด
+
+          <div className="status-center">
+            <div className="status-center-label">สถานะระบบ</div>
+            <div className="status-center-pill-row">
+              <span
+                className={
+                  'status-pill ' +
+                  (isRunning ? 'status-pill-running' : 'status-pill-stopped')
+                }
+              >
+                {isRunning ? 'Running…' : 'Stopped'}
+              </span>
+            </div>
+            <div className="status-center-sub">
+              เวลาทั้งหมดที่กำหนด: {durationHours || 0} ชั่วโมง
+            </div>
+          </div>
+
+          <div className="count-block count-left">
+            <div className="count-title">จำนวนที่เหลือ (คน)</div>
+            <div className="count-number count-number-left">{left}</div>
+            <div className="count-subrow">
+              <span className="count-percent">
+                {percentLeft.toFixed(2)}% ที่ยังไม่ได้รับ
+              </span>
+            </div>
           </div>
         </div>
 
-        <div className="status-card">
-          <div className="status-label">จำนวนที่เหลือ</div>
-          <div className="status-value">
-            {remainingCount ?? 0} <span className="unit">คน</span>
+        {/* แถวเวลา */}
+        <div className="time-row">
+          <div className="time-card">
+            <div className="time-label">ใช้เวลาไปแล้ว</div>
+            <div className="time-value">{formatTime(elapsedSeconds)}</div>
           </div>
-          <div className="sub-text">
-            จากทั้งหมด {totalGraduates ?? 0} คน
-          </div>
-        </div>
-
-        <div className="status-card">
-          <div className="status-label">เวลาใช้ไปแล้ว</div>
-          <div className="status-value">
-            {formatTime(elapsedSeconds)}
+          <div className="time-card time-card-right">
+            <div className="time-label">เหลือเวลาอีก</div>
+            <div className="time-value">{formatTime(remainingSeconds)}</div>
           </div>
         </div>
 
-        <div className="status-card">
-          <div className="status-label">เวลาเหลือ</div>
-          <div className="status-value">
-            {formatTime(remainingSeconds)}
-          </div>
-          <div className="sub-text">
-            จากเวลาที่กำหนด {durationHours || 0} ชั่วโมง
-          </div>
-        </div>
-
-        <div className="status-card">
-          <div className="status-label">ค่าเฉลี่ยการรับบัณฑิต</div>
-          <div className="status-value">
-            {avgPerMinute.toFixed(2)} <span className="unit">คน/นาที</span>
-          </div>
-        </div>
-
-        <div className="status-card running-indicator">
-          <div className="status-label">สถานะระบบ</div>
-          <div className="running-row">
-            <div
-              className={
-                'dot ' + (isRunning ? 'dot-running' : 'dot-stopped')
-              }
-            />
-            <span className="running-text">
-              {isRunning ? 'ระบบกำลังทำงาน (Running...)' : 'ระบบหยุดทำงาน'}
-            </span>
+        {/* ค่าเฉลี่ย */}
+        <div className="average-row">
+          <div className="avg-card">
+            <div className="avg-label">เฉลี่ยจำนวนรับ</div>
+            <div className="avg-value">
+              {avgPerMinute.toFixed(2)} <span className="unit">คน/นาที</span>
+            </div>
+            <div className="avg-sub">
+              จากทั้งหมด {totalGraduates || 0} คน
+            </div>
           </div>
         </div>
       </div>
     );
   };
+
 
   return (
     <div className="app-root">
