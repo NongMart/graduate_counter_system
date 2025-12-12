@@ -1,0 +1,13 @@
+{
+  "name": "graduate-counter-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "devDependencies": {
+    "turbo": "^2.6.3"
+  },
+  "packageManager": "npm@10.8.2"
+}
