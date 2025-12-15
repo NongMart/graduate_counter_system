@@ -4,6 +4,7 @@ from deep_sort_realtime.deepsort_tracker import DeepSort
 import json
 import requests
 import time
+import os
 
 url_get = ""
 url_post = ""
@@ -168,7 +169,8 @@ def startprogram(x1=0, y1=0, x2=0, y2=0, mode = None, url = None):
                 "Person_Per_Minute" : person_per_m,
                 "Max_Person_per_Minute" : max_person_per_m
             }
-            writeFile(data, "data.json")
+            
+            writeFile(data, "data")
             lasted_count = count
 
             if url_post:
@@ -193,8 +195,16 @@ def startprogram(x1=0, y1=0, x2=0, y2=0, mode = None, url = None):
     cap.release()
     cv2.destroyAllWindows()
 
-def writeFile(data, filname):
-    with open(filname,"w",encoding="utf-8") as f:
+def writeFile(newdata, filname):
+    file_date = time.strftime("%Y-%m-%d", time.localtime(time.time()))
+    file = f"{filname}-{file_date}.json"
+    if os.path.exists(file):
+        with open(file, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    else:
+        data = []
+    data.append(newdata)
+    with open(file,"w",encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
     #print(f"{GREEN}Save filie succeeded{RESET}")
 
