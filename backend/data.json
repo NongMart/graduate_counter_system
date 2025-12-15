@@ -1,7 +1,23 @@
-{
-    "People_Count": 2,
-    "Total": 0,
-    "Time_Stamp": "15:42:39",
-    "Person_Per_Minute": 0,
-    "Max_Person_per_Minute": 0
-}
+[
+    {
+        "People_Count": 1,
+        "Total": 0,
+        "Time_Stamp": "14:40:04",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0
+    },
+    {
+        "People_Count": 2,
+        "Total": 0,
+        "Time_Stamp": "14:40:10",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0
+    },
+    {
+        "People_Count": 3,
+        "Total": 0,
+        "Time_Stamp": "14:40:15",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0
+    }
+]

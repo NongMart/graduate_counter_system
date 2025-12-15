@@ -196,8 +196,8 @@ def startprogram(x1=0, y1=0, x2=0, y2=0, mode = None, url = None):
     cv2.destroyAllWindows()
 
 def writeFile(newdata, filname):
-    file_date = time.strftime("%Y-%m-%d", time.localtime(time.time()))
-    file = f"{filname}-{file_date}.json"
+    #file_date = time.strftime("%Y-%m-%d", time.localtime(time.time()))
+    file = f"{filname}.json"
     if os.path.exists(file):
         with open(file, "r", encoding="utf-8") as f:
             data = json.load(f)
