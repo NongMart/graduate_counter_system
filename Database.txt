@@ -1,0 +1,12 @@
+CREATE TABLE count_sessions (
+  id SERIAL PRIMARY KEY,
+  started_at      TIMESTAMPTZ,
+  ended_at        TIMESTAMPTZ,
+  total_graduates INTEGER NOT NULL,
+  duration_minutes INTEGER NOT NULL,
+  final_count     INTEGER NOT NULL,
+  remaining_count INTEGER NOT NULL,
+  elapsed_seconds INTEGER NOT NULL,
+  avg_per_minute  NUMERIC(10,2) NOT NULL,
+  created_at      TIMESTAMPTZ DEFAULT NOW()
+);
