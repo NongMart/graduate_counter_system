@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const { spawn } = require('child_process');
+const { pool } = require('./db.js');
 
 const app = express();
 const PORT = 5000; // frontend จะเรียกที่ http://localhost:5000
@@ -142,7 +143,54 @@ app.post('/api/control/stop', (req, res) => {
 
 
 // clear / reset ทุกอย่าง
-app.post('/api/control/clear', (req, res) => {
+app.post('/api/control/clear', async (req, res) => {
+  const snapshot = buildStatus();
+
+  const {
+    totalGraduates,
+    durationMinutes,
+    elapsedSeconds,
+    remainingCount,
+    avgPerMinute,
+    totalCount
+  } = snapshot;
+
+  const endedAt = new Date();
+  const startedAt = new Date(endedAt.getTime() - (elapsedSeconds || 0) * 1000);
+
+  // บันทึกลงฐานข้อมูล
+  try {
+    if (totalGraduates > 0 || totalCount > 0) {
+      await pool.query(
+        `
+        INSERT INTO count_sessions (
+          started_at,
+          ended_at,
+          total_graduates,
+          duration_minutes,
+          final_count,
+          remaining_count,
+          elapsed_seconds,
+          avg_per_minute
+        ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
+        `,
+        [
+          startedAt,
+          endedAt,
+          totalGraduates || 0,
+          durationMinutes || 0,
+          totalCount || 0,
+          remainingCount || 0,
+          elapsedSeconds || 0,
+          avgPerMinute || 0
+        ]
+      );
+    }
+  } catch (err) {
+    console.error('Error saving session:', err);
+  }
+
+  // Reset state
   state = {
     totalGraduates: 0,
     durationMinutes: 0,
@@ -150,11 +198,10 @@ app.post('/api/control/clear', (req, res) => {
     startTime: null,
     accumulatedElapsedSeconds: 0,
     pythonCount: 0,
-    manualDelta: 0
+    manualDelta: 0,
   };
 
   if (pythonProcess) {
-    console.log('Stopping Python AI (clear)...');
     pythonProcess.kill();
     pythonProcess = null;
   }
