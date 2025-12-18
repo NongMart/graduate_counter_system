@@ -101,7 +101,7 @@ def startprogram(x1=0, y1=0, x2=0, y2=0, mode = None, url = None):
     
     #coor = []
     #tracks = []
-    cap = cv2.VideoCapture(indexcapture)
+    cap = cv2.VideoCapture(indexcapture, cv2.CAP_DSHOW)
     windowname = "Camera"
 
     if mode is not None and url is None:
@@ -166,6 +166,8 @@ def startprogram(x1=0, y1=0, x2=0, y2=0, mode = None, url = None):
 
         
         fps = cap.get(cv2.CAP_PROP_FPS)
+        if fps == 0:
+            fps = 30
         if frame_count % (fps*60) == 0:
             temp_c = count - prv_count
             #print("Person per Sec = ", temp_c)
@@ -254,7 +256,7 @@ def setBackendPostUrl(url):
 
 
 def runPrepare():
-    cap = cv2.VideoCapture(indexcapture)
+    cap = cv2.VideoCapture(indexcapture, cv2.CAP_DSHOW)
     windowname = "Prepare"
     cv2.namedWindow(windowname)
     cv2.setMouseCallback(windowname, click_event)
@@ -267,6 +269,6 @@ def runPrepare():
         frame = cv2.resize(frame,(640,360))
         cv2.imshow(windowname, frame)
 
-        if cv2.waitKey(int(cap.get(cv2.CAP_PROP_FPS))) & 0xFF == ord('q'):
+        if cv2.waitKey(30) & 0xFF == ord('q'):
             print(f"{YELLOW}Exit by keyboard Interrupted 'Q'{RESET}")
             break
