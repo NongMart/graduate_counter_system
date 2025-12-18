@@ -69,6 +69,9 @@ person_per_m = 0
 
 indexcapture = 0 #รับ input
 
+camera_on = False
+counting = False
+
 
 mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(static_image_mode=False,
@@ -76,6 +79,12 @@ pose = mp_pose.Pose(static_image_mode=False,
                     enable_segmentation=False,
                     min_detection_confidence=0.58)
 
+def fetch_command():
+    try:
+        resp = requests.get("http://localhost:5000/api/python/command", timeout=1)
+        return resp.json()
+    except:
+        return None
 
 
 def startprogram(x1=0, y1=0, x2=0, y2=0, mode = None, url = None):
@@ -100,7 +109,17 @@ def startprogram(x1=0, y1=0, x2=0, y2=0, mode = None, url = None):
         return
     
     while True:
+        cmd = fetch_command()
+        if cmd:
+            camera_on = cmd.get("cameraOn", False)
+            counting = cmd.get("counting", False)
+
+        if not camera_on:
+            time.sleep(0.1)
+            continue
+
         ret, frame = cap.read()
+
         if not ret:
             print(f"{YELLOW}can not capture{RESET}")
             break
@@ -119,7 +138,7 @@ def startprogram(x1=0, y1=0, x2=0, y2=0, mode = None, url = None):
         local_time = time.localtime(time.time())
 
 
-        if True and len(crop) != 0:
+        if counting and len(crop) != 0:
             if frame_count % 3 == 0:
                 coor = detect_by_pipe(crop,frame,pose,x1, y1)
                 tracks = tracker.update_tracks(coor, frame=frame)

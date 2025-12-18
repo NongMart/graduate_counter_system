@@ -19,7 +19,9 @@ let state = {
   startTime: null,            // timestamp ตอนเริ่ม run รอบล่าสุด (ms)
   accumulatedElapsedSeconds: 0, // เวลาที่สะสมไปแล้วตอนกดหยุด (sec)
   pythonCount: 0,             // จำนวนที่ส่งมาจากฝั่ง Python (absolute count)
-  manualDelta: 0              // การปรับเพิ่มลดด้วยปุ่ม + / -
+  manualDelta: 0,              // การปรับเพิ่มลดด้วยปุ่ม + / -
+  cameraOn: false,
+  counting: false,
 };
 
 let pythonProcess = null;
@@ -62,6 +64,14 @@ function buildStatus() {
 
 // --------- ROUTES ---------
 
+app.get('/api/python/command', (req, res) => {
+  res.json({
+    cameraOn: state.cameraOn,
+    counting: state.counting,
+  });
+});
+
+
 // set config: จำนวนบัณฑิต + เวลาที่ใช้ (นาที)
 app.post('/api/config', (req, res) => {
   const { totalGraduates, durationMinutes } = req.body;
@@ -79,67 +89,60 @@ app.post('/api/config', (req, res) => {
   res.json({ success: true, status: buildStatus() });
 });
 
+app.post('/api/control/camera-on', (req, res) => {
+  // ❌ ห้าม reset state ตรงนี้เด็ดขาด
+  state.cameraOn = true;
+
+  if (!pythonProcess) {
+    pythonProcess = spawn('python', ['../AI/controller.py'], {
+      stdio: 'inherit',
+    });
+
+    pythonProcess.on('exit', () => {
+      pythonProcess = null;
+      state.cameraOn = false;
+      state.counting = false;
+      state.isRunning = false;
+    });
+  }
+
+  res.json({ success: true, status: buildStatus() });
+});
+
+
 // start counting
 app.post('/api/control/start', (req, res) => {
-  // ถ้ายังไม่ start timer ให้เริ่มนับเวลา
+  if (!state.cameraOn) {
+    return res.status(400).json({ error: 'Camera not opened' });
+  }
+
   if (!state.isRunning) {
     state.isRunning = true;
     state.startTime = Date.now();
   }
 
-  // ถ้า Python ยังไม่รัน ให้สั่งรัน controller.py
-  if (!pythonProcess) {
-    // ---- ปรับ path ให้ตรงกับโปรเจกต์ของคุณ ----
-    // ตัวอย่าง: ถ้าโครงสร้างเป็น:
-    // graduation-counter/
-    //   backend/
-    //   ai/controller.py
-    //
-    // แล้วคุณรัน server.js จากโฟลเดอร์ backend
-    // path ฝั่ง Node ไปหา controller.py จะเป็น "../ai/controller.py"
-    const pythonPath = 'python';       // หรือ 'python3' ถ้าใช้ Linux/Mac
-    const scriptPath = '../AI/controller.py'; // ปรับให้ตรงกับที่คุณเก็บไฟล์จริง
-
-    pythonProcess = spawn(pythonPath, [scriptPath], {
-      stdio: 'inherit',  // ให้ log ของ Python เด้งใน console เดียวกัน (ช่วย debug)
-    });
-
-    console.log('Python AI started');
-
-    pythonProcess.on('exit', (code, signal) => {
-      console.log(`Python AI exited (code=${code}, signal=${signal})`);
-      pythonProcess = null;
-    });
-
-    pythonProcess.on('error', (err) => {
-      console.error('Failed to start Python AI:', err);
-      pythonProcess = null;
-    });
-  }
-
+  state.counting = true;
   res.json({ success: true, status: buildStatus() });
 });
+
 
 
 // stop counting
 app.post('/api/control/stop', (req, res) => {
   if (state.isRunning && state.startTime) {
-    const now = Date.now();
-    state.accumulatedElapsedSeconds += (now - state.startTime) / 1000;
-    state.startTime = null;
-    state.isRunning = false;
+    state.accumulatedElapsedSeconds +=
+      (Date.now() - state.startTime) / 1000;
   }
 
-  // ถ้ามี Python รันอยู่ ให้ kill
-  if (pythonProcess) {
-    console.log('Stopping Python AI...');
-    // ส่ง signal ปิด
-    pythonProcess.kill();   // ค่า default คือ SIGTERM บน Unix, SIGTERM emulation บน Windows
-    pythonProcess = null;
-  }
+  state.isRunning = false;
+  state.startTime = null;
+
+  // หยุดนับ แต่ไม่ปิดกล้อง
+  state.counting = false;
 
   res.json({ success: true, status: buildStatus() });
 });
+
 
 
 // clear / reset ทุกอย่าง
@@ -245,7 +248,11 @@ app.post('/api/python/update-count', (req, res) => {
 
 // frontend จะเรียกเพื่อดึง status ทุก ๆ 1 วินาที
 app.get('/api/status', (req, res) => {
-  res.json(buildStatus());
+  res.json({
+    ...buildStatus(),
+    cameraOn: state.cameraOn ?? false,
+    counting: state.counting ?? false,
+  });
 });
 
 app.listen(PORT, () => {

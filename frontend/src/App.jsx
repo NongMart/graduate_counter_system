@@ -76,6 +76,7 @@ function App() {
     }
   };
 
+  const handleCameraOn = () => callControl('/api/control/camera-on');
   const handleStart = () => callControl('/api/control/start');
   const handleStop = () => callControl('/api/control/stop');
   const handleClear = () => callControl('/api/control/clear');
@@ -94,7 +95,7 @@ function App() {
     if (!status) {
       return (
         <div className="status-empty">
-          <p>ยังไม่มีข้อมูลสถานะจากระบบ</p>
+          <p>กำลังเชื่อมต่อระบบ...</p>
         </div>
       );
     }
@@ -211,7 +212,7 @@ function App() {
     <div className="app-root">
       <div className="app-container">
         <header className="app-header">
-          <img src="public/Logo.png" alt="" style={{height: "200px"}}/>
+          <img src="public/Logo.png" alt="" style={{ height: "200px" }} />
           <h1 className="system-title">
             ระบบนับจำนวนบัณฑิต ที่เข้ารับพระราชทานปริญญาบัตร
           </h1>
@@ -276,9 +277,16 @@ function App() {
             <h2 className="section-title">การควบคุมการทำงาน</h2>
             <div className="control-row">
               <button
+                className="btn primary-btn"
+                onClick={handleCameraOn}
+                disabled={controlLoading}
+              >
+                เปิดกล้อง
+              </button>
+              <button
                 className="btn success-btn"
                 onClick={handleStart}
-                disabled={controlLoading}
+                disabled={!status || !status.cameraOn || controlLoading}
               >
                 เริ่มนับ (Start)
               </button>
