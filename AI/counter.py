@@ -15,10 +15,6 @@ YELLOW = "\033[33m"
 BLUE = "\033[34m"
 RESET = "\033[0m"
 
-# ฟังก์ชัน Mouse Callback
-def click_event(event, x, y, flags, param):
-    if event == cv2.EVENT_LBUTTONDOWN:
-        print(f"Clicked at coordinates: ({x}, {y})")
 
 # ฟังก์ชัน Detect วัตถุ
 def detect_by_pipe(crop, img, pose, x1=0, y1=0):
@@ -87,7 +83,7 @@ def fetch_command():
         return None
 
 
-def startprogram(x1=0, y1=0, x2=0, y2=0, mode = None, url = None):
+def startprogram(x1=0, y1=0, x2=0, y2=0):
     global frame_count
     global boolhabdle
     global count
@@ -98,15 +94,12 @@ def startprogram(x1=0, y1=0, x2=0, y2=0, mode = None, url = None):
     lasted_count = 0
     switcher = False
     timestamp = ""
+    delta = 0
     
     #coor = []
     #tracks = []
     cap = cv2.VideoCapture(indexcapture, cv2.CAP_DSHOW)
     windowname = "Camera"
-
-    if mode is not None and url is None:
-        print("url mode need url")
-        return
     
     while True:
         cmd = fetch_command()
@@ -133,6 +126,7 @@ def startprogram(x1=0, y1=0, x2=0, y2=0, mode = None, url = None):
         else:
             if not crop_warning:
                 print(f"{YELLOW}Your crop is Empty{RESET}")
+                print(f"{x1},{y1} -> {x2},{y2}")
                 crop_warning = True
 
         local_time = time.localtime(time.time())
@@ -188,7 +182,8 @@ def startprogram(x1=0, y1=0, x2=0, y2=0, mode = None, url = None):
                 "Total" : total_value,
                 "Time_Stamp": timestamp,
                 "Person_Per_Minute" : person_per_m,
-                "Max_Person_per_Minute" : max_person_per_m
+                "Max_Person_per_Minute" : max_person_per_m,
+                "mannualDelta" : delta
             }
             
             writeFile(data, "data")
@@ -203,11 +198,11 @@ def startprogram(x1=0, y1=0, x2=0, y2=0, mode = None, url = None):
                 except Exception as e:
                     print("Error sending to backend: {e}")
         
-        if cv2.waitKey(1) & 0xFF == ord('s'):
+        if cv2.waitKey(30) & 0xFF == ord('s'):
             switcher = not switcher
             print("change switch to ", switcher)
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitKey(30) & 0xFF == ord('q'):
             print(f"{YELLOW}Exit by keyboard Interrupted 'Q'{RESET}")
             break
 
@@ -253,22 +248,3 @@ def setCameraCapture(value):
 def setBackendPostUrl(url):
     global url_post
     url_post = url
-
-
-def runPrepare():
-    cap = cv2.VideoCapture(indexcapture, cv2.CAP_DSHOW)
-    windowname = "Prepare"
-    cv2.namedWindow(windowname)
-    cv2.setMouseCallback(windowname, click_event)
-    while True:
-        ret, frame = cap.read()
-
-        if not ret:
-            break
-
-        frame = cv2.resize(frame,(640,360))
-        cv2.imshow(windowname, frame)
-
-        if cv2.waitKey(30) & 0xFF == ord('q'):
-            print(f"{YELLOW}Exit by keyboard Interrupted 'Q'{RESET}")
-            break
