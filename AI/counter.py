@@ -68,6 +68,9 @@ indexcapture = 0 #รับ input
 camera_on = False
 counting = False
 
+manual_delta = 0
+total_count_from_backend = 0
+
 
 mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(static_image_mode=False,
@@ -78,7 +81,8 @@ pose = mp_pose.Pose(static_image_mode=False,
 def fetch_command():
     try:
         resp = requests.get("http://localhost:5000/api/python/command", timeout=1)
-        return resp.json()
+        data = resp.json()
+        return data
     except:
         return None
 
@@ -106,6 +110,8 @@ def startprogram(x1=0, y1=0, x2=0, y2=0):
         if cmd:
             camera_on = cmd.get("cameraOn", False)
             counting = cmd.get("counting", False)
+            manual_delta = cmd.get("manualDelta", 0)
+            total_count_from_backend = cmd.get("totalCount", count)
 
         if not camera_on:
             time.sleep(0.1)
@@ -144,6 +150,7 @@ def startprogram(x1=0, y1=0, x2=0, y2=0):
                     track_id = track.track_id
                     if not boolhabdle:
                         count += 1
+                        total_count_from_backend += 1
                         print("Person Count: ",count)
                         timestamp = time.strftime("%H:%M:%S", local_time)
                         boolhabdle = True
@@ -178,7 +185,9 @@ def startprogram(x1=0, y1=0, x2=0, y2=0):
 
         if lasted_count < count:
             data = {
-                "People_Count" : count,
+                "People_Count_AI": count,
+                "Manual_Delta": manual_delta,
+                "People_Count_Total": total_count_from_backend,
                 "Total" : total_value,
                 "Time_Stamp": timestamp,
                 "Person_Per_Minute" : person_per_m,

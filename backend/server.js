@@ -68,6 +68,11 @@ app.get('/api/python/command', (req, res) => {
   res.json({
     cameraOn: state.cameraOn,
     counting: state.counting,
+    manualDelta: state.manualDelta,   // ⭐ สำคัญ
+    totalCount: Math.max(
+      0,
+      state.pythonCount + state.manualDelta
+    )
   });
 });
 
