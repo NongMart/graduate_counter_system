@@ -345,5 +345,165 @@
         "Person_Per_Minute": 0,
         "Max_Person_per_Minute": 0,
         "mannualDelta": 0
+    },
+    {
+        "People_Count_AI": 1,
+        "Manual_Delta": 0,
+        "People_Count_Total": 1,
+        "Total": 0,
+        "Time_Stamp": "15:39:00",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
+    },
+    {
+        "People_Count_AI": 2,
+        "Manual_Delta": 0,
+        "People_Count_Total": 2,
+        "Total": 0,
+        "Time_Stamp": "15:39:04",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
+    },
+    {
+        "People_Count_AI": 3,
+        "Manual_Delta": 0,
+        "People_Count_Total": 3,
+        "Total": 0,
+        "Time_Stamp": "15:39:08",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
+    },
+    {
+        "People_Count_AI": 4,
+        "Manual_Delta": 0,
+        "People_Count_Total": 4,
+        "Total": 0,
+        "Time_Stamp": "15:39:18",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
+    },
+    {
+        "People_Count_AI": 1,
+        "Manual_Delta": 0,
+        "People_Count_Total": 1,
+        "Total": 0,
+        "Time_Stamp": "15:49:37",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
+    },
+    {
+        "People_Count_AI": 2,
+        "Manual_Delta": 0,
+        "People_Count_Total": 2,
+        "Total": 0,
+        "Time_Stamp": "15:49:42",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
+    },
+    {
+        "People_Count_AI": 1,
+        "Manual_Delta": 0,
+        "People_Count_Total": 1,
+        "Total": 0,
+        "Time_Stamp": "15:58:30",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
+    },
+    {
+        "People_Count_AI": 2,
+        "Manual_Delta": 0,
+        "People_Count_Total": 2,
+        "Total": 0,
+        "Time_Stamp": "15:58:34",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
+    },
+    {
+        "People_Count_AI": 3,
+        "Manual_Delta": 2,
+        "People_Count_Total": 5,
+        "Total": 0,
+        "Time_Stamp": "15:58:46",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
+    },
+    {
+        "People_Count_AI": 4,
+        "Manual_Delta": 0,
+        "People_Count_Total": 4,
+        "Total": 0,
+        "Time_Stamp": "15:58:56",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
+    },
+    {
+        "People_Count_AI": 1,
+        "Manual_Delta": 0,
+        "People_Count_Total": 1,
+        "Total": 0,
+        "Time_Stamp": "15:59:36",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
+    },
+    {
+        "People_Count_AI": 2,
+        "Manual_Delta": 0,
+        "People_Count_Total": 2,
+        "Total": 0,
+        "Time_Stamp": "15:59:41",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
+    },
+    {
+        "People_Count_AI": 3,
+        "Manual_Delta": 2,
+        "People_Count_Total": 5,
+        "Total": 0,
+        "Time_Stamp": "15:59:53",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
+    },
+    {
+        "People_Count_AI": 4,
+        "Manual_Delta": 2,
+        "People_Count_Total": 6,
+        "Total": 0,
+        "Time_Stamp": "16:00:00",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
+    },
+    {
+        "People_Count_AI": 5,
+        "Manual_Delta": -1,
+        "People_Count_Total": 4,
+        "Total": 0,
+        "Time_Stamp": "16:00:14",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
+    },
+    {
+        "People_Count_AI": 6,
+        "Manual_Delta": -1,
+        "People_Count_Total": 5,
+        "Total": 0,
+        "Time_Stamp": "16:00:20",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     }
 ]

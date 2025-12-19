@@ -100,8 +100,11 @@ def startprogram(x1=0, y1=0, x2=0, y2=0):
     timestamp = ""
     delta = 0
     
-    #coor = []
-    #tracks = []
+    x_start = min(x1,x2)
+    x_end = max(x1,x2)
+    y_start = min(y1,y2)
+    y_end = max(y1,y2)
+
     cap = cv2.VideoCapture(indexcapture, cv2.CAP_DSHOW)
     windowname = "Camera"
     
@@ -126,9 +129,9 @@ def startprogram(x1=0, y1=0, x2=0, y2=0):
         frame_count += 1
         frame = cv2.resize(frame, (640, 360))
         crop = []
-        if x2>x1 and y2>y1:
+        if x_end>x_start and y_end>y_start:
             crop = frame.copy()
-            crop = crop[y1:y2 , x1:x2]
+            crop = crop[y_start:y_end , x_start:x_end]
         else:
             if not crop_warning:
                 print(f"{YELLOW}Your crop is Empty{RESET}")
