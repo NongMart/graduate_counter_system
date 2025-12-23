@@ -68,6 +68,9 @@ indexcapture = 0 #รับ input
 camera_on = False
 counting = False
 
+manual_delta = 0
+total_count_from_backend = 0
+
 
 mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(static_image_mode=False,
@@ -78,7 +81,8 @@ pose = mp_pose.Pose(static_image_mode=False,
 def fetch_command():
     try:
         resp = requests.get("http://localhost:5000/api/python/command", timeout=1)
-        return resp.json()
+        data = resp.json()
+        return data
     except:
         return None
 
@@ -96,8 +100,11 @@ def startprogram(x1=0, y1=0, x2=0, y2=0):
     timestamp = ""
     delta = 0
     
-    #coor = []
-    #tracks = []
+    x_start = min(x1,x2)
+    x_end = max(x1,x2)
+    y_start = min(y1,y2)
+    y_end = max(y1,y2)
+
     cap = cv2.VideoCapture(indexcapture, cv2.CAP_DSHOW)
     windowname = "Camera"
     
@@ -106,6 +113,8 @@ def startprogram(x1=0, y1=0, x2=0, y2=0):
         if cmd:
             camera_on = cmd.get("cameraOn", False)
             counting = cmd.get("counting", False)
+            manual_delta = cmd.get("manualDelta", 0)
+            total_count_from_backend = cmd.get("totalCount", count)
 
         if not camera_on:
             time.sleep(0.1)
@@ -120,9 +129,9 @@ def startprogram(x1=0, y1=0, x2=0, y2=0):
         frame_count += 1
         frame = cv2.resize(frame, (640, 360))
         crop = []
-        if x2>x1 and y2>y1:
+        if x_end>x_start and y_end>y_start:
             crop = frame.copy()
-            crop = crop[y1:y2 , x1:x2]
+            crop = crop[y_start:y_end , x_start:x_end]
         else:
             if not crop_warning:
                 print(f"{YELLOW}Your crop is Empty{RESET}")
@@ -144,6 +153,7 @@ def startprogram(x1=0, y1=0, x2=0, y2=0):
                     track_id = track.track_id
                     if not boolhabdle:
                         count += 1
+                        total_count_from_backend += 1
                         print("Person Count: ",count)
                         timestamp = time.strftime("%H:%M:%S", local_time)
                         boolhabdle = True
@@ -178,7 +188,9 @@ def startprogram(x1=0, y1=0, x2=0, y2=0):
 
         if lasted_count < count:
             data = {
-                "People_Count" : count,
+                "People_Count_AI": count,
+                "Manual_Delta": manual_delta,
+                "People_Count_Total": total_count_from_backend,
                 "Total" : total_value,
                 "Time_Stamp": timestamp,
                 "Person_Per_Minute" : person_per_m,

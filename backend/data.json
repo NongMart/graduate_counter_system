@@ -1,380 +1,349 @@
 [
     {
-        "People_Count": 1,
-        "Total": 0,
-        "Time_Stamp": "14:40:04",
-        "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
-    },
-    {
         "People_Count": 2,
         "Total": 0,
-        "Time_Stamp": "14:40:10",
-        "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
-    },
-    {
-        "People_Count": 3,
-        "Total": 0,
-        "Time_Stamp": "14:40:15",
+        "Time_Stamp": "12:03:35",
         "Person_Per_Minute": 0,
         "Max_Person_per_Minute": 0
     },
     {
         "People_Count": 1,
         "Total": 0,
-        "Time_Stamp": "14:45:47",
+        "Time_Stamp": "12:42:03",
         "Person_Per_Minute": 0,
         "Max_Person_per_Minute": 0
     },
     {
         "People_Count": 2,
         "Total": 0,
-        "Time_Stamp": "14:45:50",
+        "Time_Stamp": "12:42:13",
         "Person_Per_Minute": 0,
         "Max_Person_per_Minute": 0
     },
     {
         "People_Count": 3,
         "Total": 0,
-        "Time_Stamp": "14:45:53",
+        "Time_Stamp": "12:42:19",
         "Person_Per_Minute": 0,
         "Max_Person_per_Minute": 0
     },
     {
         "People_Count": 4,
         "Total": 0,
-        "Time_Stamp": "14:45:59",
+        "Time_Stamp": "12:42:25",
         "Person_Per_Minute": 0,
         "Max_Person_per_Minute": 0
+    },
+    {
+        "People_Count": 1,
+        "Total": 0,
+        "Time_Stamp": "14:14:15",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
+    },
+    {
+        "People_Count": 2,
+        "Total": 0,
+        "Time_Stamp": "14:14:18",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
+    },
+    {
+        "People_Count": 3,
+        "Total": 0,
+        "Time_Stamp": "14:14:20",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
+    },
+    {
+        "People_Count": 4,
+        "Total": 0,
+        "Time_Stamp": "14:14:23",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
         "People_Count": 5,
         "Total": 0,
-        "Time_Stamp": "14:46:04",
+        "Time_Stamp": "14:14:31",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
         "People_Count": 6,
         "Total": 0,
-        "Time_Stamp": "14:46:07",
+        "Time_Stamp": "14:14:58",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
         "People_Count": 7,
         "Total": 0,
-        "Time_Stamp": "14:46:10",
+        "Time_Stamp": "14:15:11",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
-    },
-    {
-        "People_Count": 1,
-        "Total": 0,
-        "Time_Stamp": "15:24:28",
-        "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
-    },
-    {
-        "People_Count": 2,
-        "Total": 0,
-        "Time_Stamp": "15:24:42",
-        "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
-    },
-    {
-        "People_Count": 3,
-        "Total": 0,
-        "Time_Stamp": "15:25:00",
-        "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
-    },
-    {
-        "People_Count": 4,
-        "Total": 0,
-        "Time_Stamp": "15:25:04",
-        "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
-    },
-    {
-        "People_Count": 1,
-        "Total": 0,
-        "Time_Stamp": "15:27:36",
-        "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
-    },
-    {
-        "People_Count": 2,
-        "Total": 0,
-        "Time_Stamp": "15:27:39",
-        "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
-    },
-    {
-        "People_Count": 3,
-        "Total": 0,
-        "Time_Stamp": "15:27:43",
-        "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
-    },
-    {
-        "People_Count": 4,
-        "Total": 0,
-        "Time_Stamp": "15:27:47",
-        "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
-    },
-    {
-        "People_Count": 5,
-        "Total": 0,
-        "Time_Stamp": "15:27:50",
-        "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
-    },
-    {
-        "People_Count": 6,
-        "Total": 0,
-        "Time_Stamp": "15:27:53",
-        "Person_Per_Minute": 6,
-        "Max_Person_per_Minute": 6
-    },
-    {
-        "People_Count": 1,
-        "Total": 0,
-        "Time_Stamp": "15:29:33",
-        "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
-    },
-    {
-        "People_Count": 2,
-        "Total": 0,
-        "Time_Stamp": "15:29:48",
-        "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
-    },
-    {
-        "People_Count": 3,
-        "Total": 0,
-        "Time_Stamp": "15:29:52",
-        "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
-    },
-    {
-        "People_Count": 4,
-        "Total": 0,
-        "Time_Stamp": "15:29:57",
-        "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
-    },
-    {
-        "People_Count": 5,
-        "Total": 0,
-        "Time_Stamp": "15:30:00",
-        "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
-    },
-    {
-        "People_Count": 6,
-        "Total": 0,
-        "Time_Stamp": "15:30:04",
-        "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
-    },
-    {
-        "People_Count": 7,
-        "Total": 0,
-        "Time_Stamp": "15:30:08",
-        "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
         "People_Count": 8,
         "Total": 0,
-        "Time_Stamp": "15:30:11",
-        "Person_Per_Minute": 7,
-        "Max_Person_per_Minute": 7
+        "Time_Stamp": "14:15:14",
+        "Person_Per_Minute": 0,
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 1,
+        "People_Count": 9,
         "Total": 0,
-        "Time_Stamp": "12:48:51",
+        "Time_Stamp": "14:15:24",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 2,
+        "People_Count": 10,
         "Total": 0,
-        "Time_Stamp": "12:48:58",
+        "Time_Stamp": "14:15:45",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 3,
+        "People_Count": 11,
         "Total": 0,
-        "Time_Stamp": "12:49:04",
+        "Time_Stamp": "14:15:49",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 4,
+        "People_Count": 12,
         "Total": 0,
-        "Time_Stamp": "12:49:08",
+        "Time_Stamp": "14:16:03",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 1,
+        "People_Count": 13,
         "Total": 0,
-        "Time_Stamp": "13:01:28",
+        "Time_Stamp": "14:16:29",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 2,
+        "People_Count": 14,
         "Total": 0,
-        "Time_Stamp": "13:01:33",
-        "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Time_Stamp": "14:17:13",
+        "Person_Per_Minute": 13,
+        "Max_Person_per_Minute": 13,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 3,
+        "People_Count_AI": 1,
+        "Manual_Delta": 0,
+        "People_Count_Total": 0,
         "Total": 0,
-        "Time_Stamp": "13:01:37",
+        "Time_Stamp": "14:25:32",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 4,
+        "People_Count_AI": 2,
+        "Manual_Delta": 0,
+        "People_Count_Total": 1,
         "Total": 0,
-        "Time_Stamp": "13:01:41",
+        "Time_Stamp": "14:25:35",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 1,
+        "People_Count_AI": 3,
+        "Manual_Delta": 0,
+        "People_Count_Total": 2,
         "Total": 0,
-        "Time_Stamp": "13:08:25",
+        "Time_Stamp": "14:25:37",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 2,
+        "People_Count_AI": 4,
+        "Manual_Delta": 0,
+        "People_Count_Total": 3,
         "Total": 0,
-        "Time_Stamp": "13:08:30",
+        "Time_Stamp": "14:25:54",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 3,
+        "People_Count_AI": 5,
+        "Manual_Delta": 1,
+        "People_Count_Total": 5,
         "Total": 0,
-        "Time_Stamp": "13:08:34",
+        "Time_Stamp": "14:26:19",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 4,
+        "People_Count_AI": 1,
+        "Manual_Delta": 0,
+        "People_Count_Total": 1,
         "Total": 0,
-        "Time_Stamp": "13:08:47",
+        "Time_Stamp": "14:29:38",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 5,
+        "People_Count_AI": 2,
+        "Manual_Delta": 0,
+        "People_Count_Total": 2,
         "Total": 0,
-        "Time_Stamp": "13:08:51",
+        "Time_Stamp": "14:29:41",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 1,
+        "People_Count_AI": 3,
+        "Manual_Delta": 0,
+        "People_Count_Total": 3,
         "Total": 0,
-        "Time_Stamp": "13:09:43",
+        "Time_Stamp": "14:29:54",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 2,
+        "People_Count_AI": 4,
+        "Manual_Delta": 1,
+        "People_Count_Total": 5,
         "Total": 0,
-        "Time_Stamp": "13:09:47",
+        "Time_Stamp": "14:30:09",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 1,
+        "People_Count_AI": 5,
+        "Manual_Delta": 3,
+        "People_Count_Total": 8,
         "Total": 0,
-        "Time_Stamp": "13:17:47",
+        "Time_Stamp": "14:30:25",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 2,
+        "People_Count_AI": 6,
+        "Manual_Delta": 2,
+        "People_Count_Total": 8,
         "Total": 0,
-        "Time_Stamp": "13:18:01",
+        "Time_Stamp": "14:30:48",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 3,
+        "People_Count_AI": 1,
+        "Manual_Delta": 0,
+        "People_Count_Total": 1,
         "Total": 0,
-        "Time_Stamp": "13:18:05",
+        "Time_Stamp": "14:44:45",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 1,
+        "People_Count_AI": 2,
+        "Manual_Delta": 0,
+        "People_Count_Total": 2,
         "Total": 0,
-        "Time_Stamp": "13:19:06",
+        "Time_Stamp": "14:44:48",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 2,
+        "People_Count_AI": 1,
+        "Manual_Delta": 0,
+        "People_Count_Total": 1,
         "Total": 0,
-        "Time_Stamp": "13:19:09",
+        "Time_Stamp": "14:49:35",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 1,
+        "People_Count_AI": 2,
+        "Manual_Delta": 0,
+        "People_Count_Total": 2,
         "Total": 0,
-        "Time_Stamp": "13:21:01",
+        "Time_Stamp": "14:49:38",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 2,
+        "People_Count_AI": 3,
+        "Manual_Delta": 0,
+        "People_Count_Total": 3,
         "Total": 0,
-        "Time_Stamp": "13:21:04",
+        "Time_Stamp": "14:49:41",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 3,
+        "People_Count_AI": 4,
+        "Manual_Delta": 0,
+        "People_Count_Total": 4,
         "Total": 0,
-        "Time_Stamp": "13:21:22",
+        "Time_Stamp": "14:49:44",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 4,
+        "People_Count_AI": 5,
+        "Manual_Delta": 0,
+        "People_Count_Total": 5,
         "Total": 0,
-        "Time_Stamp": "13:21:26",
+        "Time_Stamp": "14:49:47",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 1,
+        "People_Count_AI": 6,
+        "Manual_Delta": 0,
+        "People_Count_Total": 6,
         "Total": 0,
-        "Time_Stamp": "13:24:18",
+        "Time_Stamp": "14:49:50",
         "Person_Per_Minute": 0,
-        "Max_Person_per_Minute": 0
+        "Max_Person_per_Minute": 0,
+        "mannualDelta": 0
     },
     {
-        "People_Count": 2,
+        "People_Count_AI": 7,
+        "Manual_Delta": 2,
+        "People_Count_Total": 9,
         "Total": 0,
-        "Time_Stamp": "13:24:21",
+        "Time_Stamp": "14:50:07",
         "Person_Per_Minute": 0,
+<<<<<<< HEAD
         "Max_Person_per_Minute": 0
     },
     {
@@ -432,6 +401,8 @@
         "Total": 0,
         "Time_Stamp": "13:24:23",
         "Person_Per_Minute": 0,
+=======
+>>>>>>> 620b4411f6d1d3b76e71c11a71146d7f741723c7
         "Max_Person_per_Minute": 0,
         "mannualDelta": 0
     }
