@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-const API_BASE = 'http://localhost:5000';
+// const API_BASE = 'http://localhost:5000';
+const API_BASE = `http://${window.location.hostname}:5000`;
+
 
 function App() {
   // input สำหรับตั้งค่า
