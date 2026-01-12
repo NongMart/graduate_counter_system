@@ -4,7 +4,7 @@ const pool = new Pool({
   user: 'postgres',          // ชื่อ user
   host: 'localhost',
   database: 'grad_counter',  // ชื่อ database
-  password: '1234',          // password ตอนติดตั้ง
+  password: '700120',          // password ตอนติดตั้ง
   port: 5432,
 });
 
