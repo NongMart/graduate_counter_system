@@ -96,9 +96,11 @@ def startprogram(x1=0, y1=0, x2=0, y2=0):
     global person_per_m
     crop_warning = False
     lasted_count = 0
-    switcher = False
     timestamp = ""
-    delta = 0
+    m_delta = 0
+    ppm = 0
+    spp = 0
+    epsilon = 0.001
     
     x_start = min(x1,x2)
     x_end = max(x1,x2)
@@ -106,6 +108,7 @@ def startprogram(x1=0, y1=0, x2=0, y2=0):
     y_end = max(y1,y2)
 
     cap = cv2.VideoCapture(indexcapture, cv2.CAP_DSHOW)
+    fps = cap.get(cv2.CAP_PROP_FPS)
     windowname = "Camera"
     
     while True:
@@ -154,8 +157,7 @@ def startprogram(x1=0, y1=0, x2=0, y2=0):
                     if not boolhabdle:
                         count += 1
                         total_count_from_backend += 1
-                        print("Person Count: ",count)
-                        timestamp = time.strftime("%H:%M:%S", local_time)
+                        timestamp = time.strftime("%Y-%m-%d_%H:%M:%S", local_time)
                         boolhabdle = True
 
                     if len(coor) != 0:
@@ -163,24 +165,24 @@ def startprogram(x1=0, y1=0, x2=0, y2=0):
                     #print(f"{GREEN}Detected ID {track_id}{RESET}")
                     cv2.rectangle(frame, (tempbox[0], tempbox[1]), (tempbox[2], tempbox[3]), (0,255,0), 2, lineType=cv2.LINE_8)
                     cv2.putText(frame, f"ID", (tempbox[0], tempbox[1] - 5),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,255,0), 2)
-                
 
                 if len(tracks) == 0:
                     boolhabdle = False
 
         
-        fps = cap.get(cv2.CAP_PROP_FPS)
         if fps == 0:
             fps = 30
-        if frame_count % (fps*60) == 0:
-            temp_c = count - prv_count
-            #print("Person per Sec = ", temp_c)
-            prv_count = count
-            person_per_m = temp_c
-            if temp_c > max_person_per_m:
-                max_person_per_m = temp_c
-            #print("last Person per Sec = ", max_person_per_sec)
-        
+        if frame_count % fps == 0:
+            if m_delta != manual_delta:
+                m_delta = manual_delta
+                data = {
+                    "People_Count_AI": count,
+                    "Manual_Delta": manual_delta,
+                    "People_Count_Total": total_count_from_backend,
+                    "Time_Stamp": timestamp
+                }
+                writeFile(data, "data")
+
 
         cv2.imshow(windowname, frame)
         if len(crop) != 0:
@@ -191,11 +193,7 @@ def startprogram(x1=0, y1=0, x2=0, y2=0):
                 "People_Count_AI": count,
                 "Manual_Delta": manual_delta,
                 "People_Count_Total": total_count_from_backend,
-                "Total" : total_value,
-                "Time_Stamp": timestamp,
-                "Person_Per_Minute" : person_per_m,
-                "Max_Person_per_Minute" : max_person_per_m,
-                "mannualDelta" : delta
+                "Time_Stamp": timestamp
             }
             
             writeFile(data, "data")
@@ -208,18 +206,12 @@ def startprogram(x1=0, y1=0, x2=0, y2=0):
                         json={"count": count}
                     )
                 except Exception as e:
-                    print("Error sending to backend: {e}")
-        
-        if cv2.waitKey(30) & 0xFF == ord('s'):
-            switcher = not switcher
-            print("change switch to ", switcher)
+                    print(f"Error sending to backend: {e}")
 
-        if cv2.waitKey(30) & 0xFF == ord('q'):
+
+        if cv2.waitKey(1) & 0xFF == ord('q'):
             print(f"{YELLOW}Exit by keyboard Interrupted 'Q'{RESET}")
             break
-
-    percentageoferror, percentageofaccuracy = EAPercentage(count, total_value)
-    print(f"{GREEN}Person Count = {count} Max person per minute = {max_person_per_m} error = {percentageoferror}% accuracy = {percentageofaccuracy}%{RESET}")  
     cap.release()
     cv2.destroyAllWindows()
 
@@ -235,23 +227,6 @@ def writeFile(newdata, filname):
     with open(file,"w",encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
     #print(f"{GREEN}Save filie succeeded{RESET}")
-
-def readFile(filename):
-    with open(filename,"r",encoding="utf-8") as f:
-        file = json.load(f)
-    print(f"{GREEN}Read filie succeeded{RESET}")
-    return file
-
-def sendFile(filename, url):
-    with open(filename,"rb") as f:
-        files = {"data": f}
-        response = requests.post(url, files=files)
-    print(response.status_code)
-    print(response.text)
-
-def setTotalvalue(value):
-    global total_value
-    total_value = value
 
 def setCameraCapture(value):
     global indexcapture
