@@ -22,6 +22,7 @@ let state = {
   manualDelta: 0,              // การปรับเพิ่มลดด้วยปุ่ม + / -
   cameraOn: false,
   counting: false,
+  videoSource: "camera", // "camera" | "video"
 };
 
 let pythonProcess = null;
