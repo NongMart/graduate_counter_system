@@ -6,7 +6,6 @@ import requests
 import time
 import os
 
-url_get = ""
 url_post = ""
 
 RED = "\033[31m"
@@ -17,7 +16,7 @@ RESET = "\033[0m"
 
 
 # ฟังก์ชัน Detect วัตถุ
-def detect_by_pipe(crop, img, pose, x1=0, y1=0):
+def detect_by_pipe(crop, pose, x1=0, y1=0):
     rgb = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
     results = pose.process(rgb)
     coor = []
@@ -35,41 +34,14 @@ def detect_by_pipe(crop, img, pose, x1=0, y1=0):
 
     return coor
 
-# หาค่าคลาดเคลื่อนสัมพัทธ์c]t;k,c,jope
-def EAPercentage(count, accepted_value):
-    if accepted_value == 0:
-        print(f"{YELLOW}total value is 0{RESET}")
-        return 0, 0
-    dif = abs(count - accepted_value)
-    error = (dif / accepted_value) * 100
-    accuracy = 100 - error
-    return error, accuracy
-
 
 
 tracker = DeepSort(max_age=3)
 
-
-# x1 = 505 for best !!!
-#สำหรับพื้นที่ที่ crop มาต้องอ้างอิงจากภาพต้นฉบับ หมายถึง ตั้งกล้องถ่ายหนึ่งรูปแล้วใช้ฟังก์ชัน click_event คลิ๊กที่รูปเพื่อหาจุซ้ายบนและขวาล่างที่ต้องการ crop
-#x1, y1 = 503, 0  ซ้้ายบน รับเข้ามา
-#x2, y2 = 672, 720  ขวาล่าง รับเข้ามา
-
-total_value = 0 #รับ input
 boolhabdle = False
 frame_count = 0
-prv_count = 0
 count = 0 #ส่งออก จำนวนคนที่ผ่านเข้ามาในเฟรมที่ครอป
-max_person_per_m = 0 #ส่งออก อัตราคนต่อนาทีที่ผ่านเข้ามาในเฟรมที่ครอป
-person_per_m = 0
-
 indexcapture = 0 #รับ input
-
-camera_on = False
-counting = False
-
-manual_delta = 0
-total_count_from_backend = 0
 
 
 mp_pose = mp.solutions.pose
@@ -91,16 +63,10 @@ def startprogram(x1=0, y1=0, x2=0, y2=0):
     global frame_count
     global boolhabdle
     global count
-    global prv_count
-    global max_person_per_m
-    global person_per_m
     crop_warning = False
     lasted_count = 0
     timestamp = ""
     m_delta = 0
-    ppm = 0
-    spp = 0
-    epsilon = 0.001
     
     x_start = min(x1,x2)
     x_end = max(x1,x2)
@@ -146,7 +112,7 @@ def startprogram(x1=0, y1=0, x2=0, y2=0):
 
         if counting and len(crop) != 0:
             if frame_count % 3 == 0:
-                coor = detect_by_pipe(crop,frame,pose,x1, y1)
+                coor = detect_by_pipe(crop,pose,x1, y1)
                 tracks = tracker.update_tracks(coor, frame=frame)
 
                 for track in tracks:
