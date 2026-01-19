@@ -105,7 +105,7 @@ app.post('/api/control/camera-on', (req, res) => {
   state.cameraOn = true;
 
   if (!pythonProcess) {
-    pythonProcess = spawn('python', ['../AI/controller.py'], {
+    pythonProcess = spawn('python', ['../AI/controller2.py'], {
       stdio: 'inherit',
     });
 

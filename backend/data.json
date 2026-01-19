@@ -28,5 +28,23 @@
         "Manual_Delta": 0,
         "People_Count_Total": 5,
         "Time_Stamp": "2026-01-12_14:06:11"
+    },
+    {
+        "People_Count_AI": 1,
+        "Manual_Delta": 0,
+        "People_Count_Total": 1,
+        "Time_Stamp": "2026-01-19_15:00:35"
+    },
+    {
+        "People_Count_AI": 2,
+        "Manual_Delta": 0,
+        "People_Count_Total": 2,
+        "Time_Stamp": "2026-01-19_15:00:41"
+    },
+    {
+        "People_Count_AI": 3,
+        "Manual_Delta": 0,
+        "People_Count_Total": 3,
+        "Time_Stamp": "2026-01-19_15:00:48"
     }
 ]
